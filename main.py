@@ -56,18 +56,21 @@ async def files_handler(bot: Client, cmd: Message):
             await db.delete_user(cmd.from_user.id)
     forward = await forwardMessage(cmd)
     if cmd.from_user.is_bot:
-        text = "This File will be deleted in 10 minutes.\n\n" \
-               "But,\n" \
-               "File Stored in Database!\n" \
-               f"**File Name:** `{media.file_name}`\n\n" \
-               f"[👉 Get File Now 👈](https://t.me/{(await Bot.get_me()).username}?start=AbirHasan2005_{str(forward.message_id)})"
+        text = "This File will be deleted in **10 minutes**.\n\n" \
+               "But, File Stored in Database!\n" \
+               f"**File Name:** `{media.file_name}`\n" \
+               f"**Duration:** `{media.duration}`\n" \
+               f"**File Size:** `{media.file_size}`\n\n" \
+               f"[👉 Get File Here 👈](https://t.me/{(await Bot.get_me()).username}?start=XCloud_{str(forward.message_id)})"
     else:
         text = f"{cmd.from_user.mention} Unkil,\n" \
                "This File will be deleted in 10 minutes.\n\n" \
                "But,\n" \
                "Your File stored in Database!\n\n" \
-               f"**File Name:** `{media.file_name}`\n\n" \
-               f"[👉 Get Your File Now 👈](https://t.me/{(await Bot.get_me()).username}?start=AbirHasan2005_{str(forward.message_id)})"
+               f"**File Name:** `{media.file_name}`\n" \
+               f"**Duration:** `{media.duration}`\n" \
+               f"**File Size:** `{media.file_size}`\n\n" \
+               f"[👉 Get Your File Here 👈](https://t.me/{(await Bot.get_me()).username}?start=XCloud{str(forward.message_id)})"
     await sendMessage(
         bot=bot,
         message_id=cmd.message_id,
@@ -87,7 +90,7 @@ async def text_handler(_, cmd: Message):
         "Hi Unkil!\n"
         "I am Group Files Store Userbot.\n\n"
         "Add me to Group I will Save Group Files & Delete Them After 10 Minutes. Also I will Reply with Revive Link.\n"
-        "**Demo Group:** [Discovery Cloud](https://t.me/joinchat/O9WIjhCGHLo0YmQ0)",
+        "**Demo Group:** [Here](https://t.me/botfather)",
         disable_web_page_preview=True
     )
 
