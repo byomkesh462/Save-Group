@@ -4,8 +4,8 @@ import os
 
 
 class Config(object):
-    API_ID = int(os.environ.get("API_ID", 12345))
-    API_HASH = os.environ.get("API_HASH", None)
+    API_ID = int(os.environ.get("API_ID", 7755760))
+    API_HASH = os.environ.get("API_HASH", 81735e276028a9af3d6a87f8787906ac)
     STRING_SESSION = os.environ.get("STRING_SESSION", "")
     DB_CHANNEL_ID = int(os.environ.get("DB_CHANNEL_ID", -100))
     FORCE_SUB_CHANNEL = os.environ.get("FORCE_SUB_CHANNEL", None)
