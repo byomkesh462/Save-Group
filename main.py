@@ -12,11 +12,6 @@ from handlers.forwarder_handler import forwardMessage
 from handlers.send_mesage_handler import sendMessage
 from handlers.database.add_user import AddUserToDatabase
 
-User = Client(
-    session_name="Abir-Save-Group-user",
-    api_id=Config.API_ID,
-    api_hash=Config.API_HASH
-)
 Bot = Client(
     session_name="Abir-Save-Group",
     api_id=Config.API_ID,
