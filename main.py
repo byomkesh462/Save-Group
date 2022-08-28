@@ -55,7 +55,7 @@ async def files_handler(bot: Client, cmd: Message):
                f"**File Name:** `{media.file_name}`\n" \
                f"**Duration:** `{media.duration}`\n" \
                f"**File Size:** `{media.file_size}`\n\n" \
-               f"[👉 Get File Here 👈](https://t.me/{(await Bot.get_me()).username}?start=XCloud_{str(forward.message_id)})"
+               f"[👉 Get File Here 👈](https://t.me/{(await Bot.get_me()).username}?start=XCloud_{str(forward.message.id)})"
     else:
         text = f"{cmd.from_user.mention} Unkil,\n" \
                "This File will be deleted in 10 minutes.\n\n" \
@@ -64,10 +64,10 @@ async def files_handler(bot: Client, cmd: Message):
                f"**File Name:** `{media.file_name}`\n" \
                f"**Duration:** `{media.duration}`\n" \
                f"**File Size:** `{media.file_size}`\n\n" \
-               f"[👉 Get Your File Here 👈](https://t.me/{(await Bot.get_me()).username}?start=XCloud{str(forward.message_id)})"
+               f"[👉 Get Your File Here 👈](https://t.me/{(await Bot.get_me()).username}?start=XCloud{str(forward.message.id)})"
     await sendMessage(
         bot=bot,
-        message_id=cmd.message_id,
+        message_id=cmd.message.id,
         chat_id=cmd.chat.id,
         text=text
     )
@@ -75,7 +75,7 @@ async def files_handler(bot: Client, cmd: Message):
     try:
         await cmd.delete(True)
     except Exception as err:
-        print(f"Unable to Delete Media Message!\nError: {err}\n\nMessage ID: {cmd.message_id}")
+        print(f"Unable to Delete Media Message!\nError: {err}\n\nMessage ID: {cmd.message.id}")
 
 
 @Bot.on_message(filters.private & (filters.text | filters.sticker))
@@ -118,13 +118,13 @@ async def Fsub_handler(bot: Client, event: Message):
 async def start_handler(bot: Client, event: Message):
     __data = event.text.split("_")[-1]
     if __data == "/start":
-        await sendMessage(bot, "Go Away Unkil", event.message_id, event.chat.id)
+        await sendMessage(bot, "Go Away Unkil", event.message.id, event.chat.id)
     else:
         file_id = int(__data)
         try:
             await bot.forward_messages(chat_id=event.chat.id, from_chat_id=Config.DB_CHANNEL_ID, message_ids=file_id)
         except:
-            await sendMessage(bot, "Unable to Get Message!\n\nReport at @DevsZone !!", event.message_id, event.chat.id)
+            await sendMessage(bot, "Unable to Get Message!\n\nReport at @DevsZone !!", event.message.id, event.chat.id)
 
 
 @Bot.on_chat_member_updated()
