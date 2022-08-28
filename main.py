@@ -84,7 +84,7 @@ async def files_handler(bot: Client, cmd: Message):
         print(f"Unable to Delete Media Message!\nError: {err}\n\nMessage ID: {cmd.message_id}")
 
 
-@User.on_message(filters.private & (filters.text | filters.sticker) & ~filters.edited)
+@Bot.on_message(filters.private & (filters.text | filters.sticker) & ~filters.edited)
 async def text_handler(_, cmd: Message):
     await cmd.reply_text(
         "Hi Unkil!\n"
@@ -95,7 +95,7 @@ async def text_handler(_, cmd: Message):
     )
 
 
-@User.on_message(filters.group & filters.text & ~filters.edited)
+@Bot.on_message(filters.group & filters.text & ~filters.edited)
 async def Fsub_handler(bot: Client, event: Message):
     if (Config.FORCE_SUB_CHANNEL is not None) and (event.from_user.is_bot is False):
         await AddUserToDatabase(event)
@@ -163,17 +163,17 @@ async def handle_Fsub_Join(bot: Client, event: Message):
                 print(f"Skipping FSub ...\nError: {e}")
 
 # Start User Client
-User.start()
-print("Userbot Started!")
+#User.start()
+#print("Userbot Started!")
 # Start Bot Client
 Bot.start()
 print("Bot Started!")
 # Loop Clients till Disconnects
 idle()
 # Stop User Client
-User.stop()
-print("\n")
-print("Userbot Stopped!")
+#User.stop()
+#print("\n")
+#print("Userbot Stopped!")
 # Stop Bot Client
 Bot.stop()
 print("Bot Stopped!")
