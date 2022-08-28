@@ -19,7 +19,7 @@ Bot = Client("Abir_Save_Group",
 )
 
 
-@Bot.on_message(filters.group & (filters.document | filters.video) & ~filters.edited)
+@Client.on_message(filters.group & (filters.document | filters.video) & ~filters.edited)
 async def files_handler(bot: Client, cmd: Message):
     media = cmd.document or cmd.video
     if media.file_name.rsplit(".", 1)[-1] in Config.BLOCKED_EXTENSIONS:
@@ -78,7 +78,7 @@ async def files_handler(bot: Client, cmd: Message):
         print(f"Unable to Delete Media Message!\nError: {err}\n\nMessage ID: {cmd.message_id}")
 
 
-@Bot.on_message(filters.private & (filters.text | filters.sticker) & ~filters.edited)
+@Client.on_message(filters.private & (filters.text | filters.sticker) & ~filters.edited)
 async def text_handler(_, cmd: Message):
     await cmd.reply_text(
         "Hi Unkil!\n"
@@ -89,7 +89,7 @@ async def text_handler(_, cmd: Message):
     )
 
 
-@Bot.on_message(filters.group & filters.text & ~filters.edited)
+@Client.on_message(filters.group & filters.text & ~filters.edited)
 async def Fsub_handler(bot: Client, event: Message):
     if (Config.FORCE_SUB_CHANNEL is not None) and (event.from_user.is_bot is False):
         await AddUserToDatabase(event)
@@ -114,7 +114,7 @@ async def Fsub_handler(bot: Client, event: Message):
             await db.delete_user(event.from_user.id)
 
 
-@Bot.on_message(filters.private & filters.command("start") & ~filters.edited)
+@Client.on_message(filters.private & filters.command("start") & ~filters.edited)
 async def start_handler(bot: Client, event: Message):
     __data = event.text.split("_")[-1]
     if __data == "/start":
@@ -127,7 +127,7 @@ async def start_handler(bot: Client, event: Message):
             await sendMessage(bot, "Unable to Get Message!\n\nReport at @DevsZone !!", event.message_id, event.chat.id)
 
 
-@Bot.on_chat_member_updated()
+@Client.on_chat_member_updated()
 async def handle_Fsub_Join(bot: Client, event: Message):
     """
     Auto Unmute Member after joining channel.
