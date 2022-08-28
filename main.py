@@ -25,7 +25,7 @@ Bot = Client(
 )
 
 
-@User.on_message(filters.group & (filters.document | filters.video) & ~filters.edited)
+@Bot.on_message(filters.group & (filters.document | filters.video) & ~filters.edited)
 async def files_handler(bot: Client, cmd: Message):
     media = cmd.document or cmd.video
     if media.file_name.rsplit(".", 1)[-1] in Config.BLOCKED_EXTENSIONS:
