@@ -13,7 +13,7 @@ from handlers.send_mesage_handler import sendMessage
 from handlers.database.add_user import AddUserToDatabase
 
 User = Client(
-    session_name=Config.STRING_SESSION,
+    session_name="Abir-Save-Group",
     api_id=Config.API_ID,
     api_hash=Config.API_HASH
 )
